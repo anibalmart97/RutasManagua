@@ -20,50 +20,25 @@
       </div>
 
       <div id="mArticles">
-        <article class="post clearfix">
-          <a href="#" class="thumb pull-left">
-            <img src="<%= asset_path 'image2.jpg' %>" alt="Imagen numero uno" class="img-thumbnail">
-          </a>
-          <h2 class="post-title">
-            <a href="#">Uno de los tres mas recientes</a>
-          </h2>
-          <p><span class="post-fecha">23 de julio del 2013</span> Por <span class="post-autor"><a href="#">Michell Victoria Gutierrez</a></span></p>
-          <p class="post-contenido text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt consectetur atque minima necessitatibus sint possimus quod tempora, eum eius architecto perferendis. Deleniti repellat fugiat, numquam, non obcaecati tempore dolore porro? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad neque architecto minus eligendi saepe! Dolorem id hic voluptate cum, impedit non, consequuntur nemo distinctio accusamus unde perferendis error aliquam praesentium.</p>
-          <div class="contenedor-botones">
-            <a href="#" class="btn btn-primary">Leer mas</a>
-            <a href="#" class="btn btn-danger">Comentarios <span class="badge">20</span></a>
-          </div>
-        </article>
+        <% @Articulos.each do |articulo| %>
+            <article class="post clearfix">
+              <a href="#" class="thumb pull-left">
+                <img src="<%= asset_path 'image2.jpg' %>" alt="Imagen numero uno" class="img-thumbnail">
+              </a>
 
-        <article class="post clearfix">
-          <a href="#" class="thumb pull-left">
-            <img src="<%= asset_path 'image5.jpg' %>" alt="Imagen numero uno" class="img-thumbnail">
-          </a>
-          <h2 class="post-title">
-            <a href="#">Uno de los tres mas recientes</a>
-          </h2>
-          <p><span class="post-fecha">23 de julio del 2013</span> Por <span class="post-autor"><a href="#">Mirna Lucia Martinez</a></span></p>
-          <p class="post-contenido text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt consectetur atque minima necessitatibus sint possimus quod tempora, eum eius architecto perferendis. Deleniti repellat fugiat, numquam, non obcaecati tempore dolore porro? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad neque architecto minus eligendi saepe! Dolorem id hic voluptate cum, impedit non, consequuntur nemo distinctio accusamus unde perferendis error aliquam praesentium.</p>
-          <div class="contenedor-botones">
-            <a href="#" class="btn btn-primary">Leer mas</a>
-            <a href="#" class="btn btn-danger">Comentarios <span class="badge">20</span></a>
-          </div>
-        </article>
-
-        <article class="post clearfix">
-          <a href="#" class="thumb pull-left">
-            <img src="<%= asset_path 'image4.jpg' %>" alt="Imagen numero uno" class="img-thumbnail">
-          </a>
-          <h2 class="post-title">
-            <a href="#">Uno de los tres mas recientes</a>
-          </h2>
-          <p><span class="post-fecha">23 de julio del 2013</span> Por <span class="post-autor"><a href="#">Anibal Antonio Martinez</a></span></p>
-          <p class="post-contenido text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt consectetur atque minima necessitatibus sint possimus quod tempora, eum eius architecto perferendis. Deleniti repellat fugiat, numquam, non obcaecati tempore dolore porro? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad neque architecto minus eligendi saepe! Dolorem id hic voluptate cum, impedit non, consequuntur nemo distinctio accusamus unde perferendis error aliquam praesentium.</p>
-          <div class="contenedor-botones">
-            <a href="#" class="btn btn-primary">Leer mas</a>
-            <a href="#" class="btn btn-danger">Comentarios <span class="badge">20</span></a>
-          </div>
-        </article>
+              <h2 class="post-title">
+                <a href="#"><%= articulo.article_title%></a>
+              </h2>
+              <p><span class="post-fecha"><%= articulo.article_date%></span> Por <span class="post-autor"><a href="#">RutasManagua</a></span></p>
+              <p class="post-contenido text-justify">
+                <%= articulo.article_content[0...281]+'...'%>
+              </p>
+              <div class="contenedor-botones">
+                <%= link_to 'Leer mas', articulo,class:"btn btn-primary" %>
+                <a href="#" class="btn btn-danger">Comentarios <span class="badge">20</span></a>
+              </div>
+            </article>
+        <% end %>
       </div>
 
       <nav>

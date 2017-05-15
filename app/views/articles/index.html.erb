@@ -3,7 +3,8 @@
 
   <h1>Lista de Articulos</h1>
   <div class="me_content_table">
-    <table class="table table-condensed table-hover">
+
+    <table class="table table-striped table-condensed table-hover">
       <thead>
         <tr class="active">
           <th>Titulo</th>
@@ -22,9 +23,9 @@
             <td><%= article.article_content %></td>
             <td><%= article.article_date %></td>
             <td><%= article.section.section_name %></td>
-            <td><%= link_to 'Show', article %></td>
-            <td><%= link_to 'Edit', edit_article_path(article) %></td>
-            <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Ver', article,class:"btn btn-default" %></td>
+            <td><%= link_to 'Editar', edit_article_path(article),class:"btn btn-default" %></td>
+            <td><%= link_to 'Borrar', article,class:"btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
