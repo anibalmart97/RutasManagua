@@ -11,12 +11,20 @@
     </div>
   <% end %>
 
-    <div class="field">
-    <%= f.label :section_name %><br>
-    <%= f.text_field :section_name,class:"form-control" %>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit  class:"btn btn-info pull-right"%>
-  </div>
+    <div class="field col-xs-12">
+      <%= f.label :section_name %><br>
+      <%= f.text_field :section_name,class:"form-control" %>
+    </div>
+
+    <div class="field col-xs-12" style="margin-bottom:15px;">
+      <%= f.label :'Descripcion' %><br>
+      <%= f.text_area :section_description,class:"form-control box-info",id:"informacion" %>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="actions">
+      <%= f.submit  class:"btn btn-info pull-right"%>
+    </div>
 <% end %>
