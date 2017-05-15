@@ -28,9 +28,7 @@
         </div>
         <div class="field col-xs-12 col-md-6">
           <%= f.label :'Seccion/Categoria' %><br>
-          <%= f.collection_select :section_id,Section.all, :section_id, :section_name, {}, {:class=>"form-control",:id=>"categoria"} %>
-          <!-- <%= collection_select(:book,:section_id,Section.all,:section_id,:section_name) %>
-          <%= collection_select(:section, :section_id, Section.all, :section_id, :section_name, {}, {:class=>"form-control"}) %> -->
+          <%= f.collection_select :section_id,Section.all, :id, :section_name, {}, {:class=>"form-control",:id=>"categoria"} %>
         </div>
         <div class="field col-xs-12 col-md-6">
             <%= f.label :'Fecha' %><br>

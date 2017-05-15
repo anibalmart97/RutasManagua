@@ -11,9 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170515103927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "articles", force: :cascade do |t|
+    t.string  "article_title"
+    t.string  "article_subtitle"
+    t.text    "article_content"
+    t.date    "article_date"
+    t.integer "section_id"
+  end
+
+  add_index "articles", ["section_id"], name: "index_articles_on_section_id", using: :btree
+
+  create_table "myusers", primary_key: "user_id", force: :cascade do |t|
+    t.string "user_name",     limit: 15
+    t.string "user_password", limit: 20
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "section_name"
+    t.text   "section_description"
+  end
+
+  add_foreign_key "articles", "sections"
 end
