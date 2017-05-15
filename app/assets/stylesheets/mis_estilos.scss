@@ -1,0 +1,92 @@
+*{
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#mibody{
+font-family: 'Titillium Web', sans-serif;
+margin-top: 60px;
+background:url("<%= asset_path 'bg.jpg' %>"); /* Nuestra imagen de fondo */
+background-repeat:no-repeat; /* Indicamos que no se repetira */
+background-size:cover; /* Encajamos la imagen al 100% del ancho */
+background-attachment: fixed; /* Establecemos una posicion fija para la imagen */
+background: #f9f9f9;
+}
+ article {
+	//background:rgba(40, 144, 182, 0.9);
+	padding:20px;
+	margin:20px 0;
+	box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+}
+
+.miarticle{
+  //background:rgba(40, 144, 182, 0.9);
+	padding:5px;
+	margin:10px 0;
+	box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+}
+
+ article h2,a{
+   //color:rgb(55, 55, 55);
+ }
+
+.jumbotron-fm {
+	background: #5897cd;
+	color: #fff;
+	padding: 20px 0px;
+}
+/*------Post-------*/
+
+.main {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.post {
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #999
+}
+
+.post .post-title a {
+	color: #333;
+}
+
+.post .thumb {
+	margin-right: 10px;
+	width: 35%;
+}
+
+.post .thumb img {
+	width: 100%;
+}
+
+.post .contenedor.botones {
+	width: 100%;
+}
+
+/*----Media Object----*/
+@media screen and (max-width: 768px){
+	.post .thumb{
+		width: 100%;
+		margin-bottom: 20px;
+		margin-right: 0px;
+	}
+}
+
+.logoRutasManagua{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 240px;
+  width: 100%;
+}
+// .form-control{
+//   border:none;
+//   border-bottom: 1px solid #4a4a4a;
+//   outline: none;
+//   width: 100%;
+//   display: block;
+//   padding: 10 0;
+//   margin-bottom: 10px;
+// }

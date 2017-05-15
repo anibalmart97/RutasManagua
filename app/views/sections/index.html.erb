@@ -1,0 +1,68 @@
+<div class="container">
+    <p id="notice"><%= notice %></p>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="page-header">
+          <h1>Sistemas del Cuerpo Humano</h1>
+        </div>
+          <% @sections.each do |section| %>
+              <article class="post clearfix">
+                <a href="#" class="thumb pull-left">
+                  <img src="<%= asset_path 'image3.jpg' %>" alt="Imagen numero uno" class="img-thumbnail">
+                </a>
+                <h3 class="post-title"><%= section.section_name %> <small></small></h3>
+                  <p class="post-contenido text-justify">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur nobis veniam aspernatur ullam ratione molestiae porro obcaecati beatae, vel rerum sint dicta, dolore iure minus perferendis architecto non saepe? Eveniet.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quidem amet optio, dicta alias architecto, necessitatibus velit iure dolores perferendis rerum laborum voluptatibus neque aperiam atque mollitia recusandae porro dolorum.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem architecto, debitis repellendus dolorum, voluptatibus eveniet dignissimos consequuntur rem minus libero. Pariatur aspernatur laudantium expedita corporis quaerat omnis, sint deleniti, praesentium.
+                  </p>
+                  <div class="contenedor-botones pull-right">
+                    <%= link_to 'Ver Completo', section,class:"btn btn-primary" %></td>
+                    <%= link_to 'Editar', edit_section_path(section),class:"btn btn-warning" %></td>
+                    <%= link_to 'Eliminar', section, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %>
+                  </div>
+              </article>
+          <% end %>
+        <br><br>
+        <%= link_to 'Nuevo Sistema', new_section_path ,class:"btn btn-info"%>
+        <br><br>
+      </div>
+
+      <aside class="col-md-3 hidden-xs hidden-sm">
+        <h4>Servicios</h4>
+        <div class="list-group">
+          <a href="#" class="list-group-item active">Curiosidades</a>
+          <a href="#" class="list-group-item">Computadoras</a>
+          <a href="#" class="list-group-item">Celulares</a>
+          <a href="#" class="list-group-item">Diseño Web</a>
+        </div>
+
+        <h4>Articulos Recientes</h4>
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">
+            No tengo mas Patria que tu Corazon
+          </h4>
+          <p class="list-group-item-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita repellendus animi.
+          </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">
+            todo comienzo es dificil
+          </h4>
+          <p class="list-group-item-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, sunt, tempora. Labore aperiam.
+          </p>
+        </a>
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">
+            Inicia porque de lo contrario no terminaras
+          </h4>
+          <p class="list-group-item-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione fugit tenetur, quibusdam.
+          </p>
+        </a>
+      </aside>
+
+    </div>
+</div>

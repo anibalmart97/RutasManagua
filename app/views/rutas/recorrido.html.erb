@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 col-xs-12">
+      <div class="col-xs-12 container-map">
+          <ol class="breadcrumb">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li class="active">Mapas de Recorridos</li>
+          </ol>
+          <div class="page-header">
+            <h1>Mapa de Recorrido <small>Seleccione la Unidad de Transporte</small></h1>
+          </div>
+          <div style="width:100%; height:100%" id="map"></div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="alert alert-warning">
+          <p>Seleccione la ruta para visualizar el recorrido.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="form-group">
+         <label for="selection_ruta">Seleccione una Ruta:</label>
+         <select class="form-control" id="selection_ruta">
+           <option>1</option>
+           <option>2</option>
+           <option>3</option>
+           <option>4</option>
+         </select>
+       </div>
+      </div>
+
+    </div>
+    <div class="col-md-3 hidden-xs">
+      <aside class="hidden-xs hidden-sm">
+          <h4>Servicios</h4>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Mapas de Recorridos</a>
+            <a href="#" class="list-group-item">Ubicacion</a>
+            <a href="#" class="list-group-item">Noticas</a>
+            <a href="#" class="list-group-item">Contactar / Sugerencias</a>
+            <a href="#" class="list-group-item">Acerca de Nosotros</a>
+          </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script>
+    var map = new ol.Map({
+      target: 'map',
+      renderer: 'canvas',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.transform([2.1833, 41.3833], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 2
+      })
+    });
+
+    var vectorLayer = new ol.layer.Vector({
+    source: new ol.source.GeoJSON({
+      url: "<%= asset_path('geojson/6.1.geojson') %>"
+    })
+  });
+
+  // Añadir capa vectorial al mapa
+  map.addLayer(vectorLayer);
+
+
+</script>
