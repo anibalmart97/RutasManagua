@@ -20,7 +20,7 @@
           <td><%= article.article_subtitle %></td>
           <td><%= article.article_content %></td>
           <td><%= article.article_date %></td>
-          <td><%= article.section %></td>
+          <td><%= article.section.section_name %></td>
           <td><%= link_to 'Show', article %></td>
           <td><%= link_to 'Edit', edit_article_path(article) %></td>
           <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>

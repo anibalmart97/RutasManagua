@@ -14,29 +14,31 @@
           </div>
         <% end %>
 
-        <div class="field">
+        <div class="field col-xs-12">
           <%= f.label :'Titulo' %><br>
           <%= f.text_field :article_title,class:"form-control",id:"titulo" %>
         </div>
-        <div class="field">
+        <div class="field col-xs-12">
           <%= f.label :'Sub-Titulo' %><br>
           <%= f.text_field :article_subtitle,class:"form-control",id:"subtitulo" %>
         </div>
-        <div class="field">
+        <div class="field col-xs-12">
           <%= f.label :'Contenido' %><br>
-          <%= f.text_area :article_content,class:"form-control",id:"informacion" %>
+          <%= f.text_area :article_content,class:"form-control box-info",id:"informacion" %>
         </div>
-        <div class="field">
-          <%= f.label :'Fecha' %><br>
-          <%= f.date_select :article_date,class:"form-control" %>
-        </div>
-        <div class="field">
+        <div class="field col-xs-12 col-md-6">
           <%= f.label :'Seccion/Categoria' %><br>
-          <%= f.text_field :section_id,class:"form-control",id:"categoria" %>
+          <%= f.collection_select :section_id,Section.all, :section_id, :section_name, {}, {:class=>"form-control",:id=>"categoria"} %>
+          <!-- <%= collection_select(:book,:section_id,Section.all,:section_id,:section_name) %>
+          <%= collection_select(:section, :section_id, Section.all, :section_id, :section_name, {}, {:class=>"form-control"}) %> -->
+        </div>
+        <div class="field col-xs-12 col-md-6">
+            <%= f.label :'Fecha' %><br>
+            <%= f.date_select :article_date,class:"form-control",id:"datetimepicker1" %>
         </div>
         <br/>
-        <div class="actions pull-right">
-          <%= f.button 'Guardar',class:"btn btn-primary" %>
+        <div class="actions pull-right" style="margin-top:20px;">
+            <%= f.button 'Guardar',class:"btn btn-primary" %>
         </div>
       <% end %>
     </div>
@@ -45,3 +47,9 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
