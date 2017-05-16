@@ -13,6 +13,11 @@
       <div class="contenido">
         <div class="panel panel-default">
           <div class="panel-body">
+            <div class="center-block">
+              <%= image_tag @article.image.url(:medium) ,class:"img-thumbnail img-responsive center-block " %>
+            </div>
+
+            <hr>
             <%= @article.article_content %>
           </div>
           <div class="panel-footer">

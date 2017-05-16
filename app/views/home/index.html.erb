@@ -23,7 +23,9 @@
         <% @Articulos.each do |articulo| %>
             <article class="post clearfix">
               <a href="#" class="thumb pull-left">
-                <img src="<%= asset_path 'image2.jpg' %>" alt="Imagen numero uno" class="img-thumbnail">
+                <!-- <img src="<%= asset_path 'image2.jpg' %>" alt="Imagen numero uno" class="img-thumbnail"> -->
+                <%= image_tag articulo.image.url(:small) ,class:"img-thumbnail" %>
+
               </a>
 
               <h2 class="post-title">
