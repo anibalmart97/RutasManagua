@@ -7,6 +7,7 @@ gem 'pg'
 # Use sqlite3 as the database for Active Record
 gem 'rename'
 gem 'paperclip'
+gem 'ckeditor'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-datepicker-rails'

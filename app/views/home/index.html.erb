@@ -33,7 +33,7 @@
               </h2>
               <p><span class="post-fecha"><%= articulo.article_date%></span> Por <span class="post-autor"><a href="#">RutasManagua</a></span></p>
               <p class="post-contenido text-justify">
-                <%= articulo.article_content[0...281]+'...'%>
+                <%=  articulo.article_content[0...281]+'...'%>
               </p>
               <div class="contenedor-botones">
                 <%= link_to 'Leer mas', articulo,class:"btn btn-primary" %>
