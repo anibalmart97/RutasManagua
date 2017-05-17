@@ -14,6 +14,7 @@
           </div>
         <% end %>
 
+
         <div class="field col-xs-12">
           <%= f.label :'Titulo' %><br>
           <%= f.text_field :article_title,class:"form-control",id:"titulo" %>
@@ -24,8 +25,13 @@
         </div>
         <div class="field col-xs-12">
           <%= f.label :'Imagen del Articulo' %><br>
-          <%= f.file_field :image,class:"",id:"imagen" %>
+          <%= image_tag @article.image.url(:small),class:"thumbnail img-responsive"%>
+          <%= f.file_field :image,id:"imagen",class:"" %>
         </div>
+
+        <br>
+        <br>
+        
         <div class="field col-xs-12">
           <%= f.label :'Contenido' %><br>
           <%= f.cktext_area :article_content,class:"form-control box-info",id:"informacion" %>
