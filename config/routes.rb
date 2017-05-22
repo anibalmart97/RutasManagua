@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'home/configure'
+
   devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
   get 'rutas/recorrido'

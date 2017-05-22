@@ -5,26 +5,32 @@
         <div class="page-header">
           <h1>Categorias de Articulos</h1>
         </div>
-          <% @sections.each do |section| %>
-              <article class="post clearfix">
-                <a href="#" class="thumb pull-left">
-                  <img src="<%= asset_path 'image3.jpg' %>" alt="Imagen numero uno" class="img-thumbnail">
-                </a>
-                <h3 class="post-title"><%= section.section_name %> <small></small></h3>
-                  <p class="post-contenido text-justify">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur nobis veniam aspernatur ullam ratione molestiae porro obcaecati beatae, vel rerum sint dicta, dolore iure minus perferendis architecto non saepe? Eveniet.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quidem amet optio, dicta alias architecto, necessitatibus velit iure dolores perferendis rerum laborum voluptatibus neque aperiam atque mollitia recusandae porro dolorum.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem architecto, debitis repellendus dolorum, voluptatibus eveniet dignissimos consequuntur rem minus libero. Pariatur aspernatur laudantium expedita corporis quaerat omnis, sint deleniti, praesentium.
-                  </p>
-                  <div class="contenedor-botones pull-right">
-                    <%= link_to 'Ver Completo', section,class:"btn btn-primary" %></td>
-                    <%= link_to 'Editar', edit_section_path(section),class:"btn btn-warning" %></td>
-                    <%= link_to 'Eliminar', section, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %>
-                  </div>
-              </article>
-          <% end %>
+        <div class="me_content_table">
+          <table class="table table-striped  table-condensed table-hover">
+            <thead>
+              <tr class="active">
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @sections.each do |section| %>
+                <tr>
+                  <td><%= section.section_name %></td>
+                  <td><%= section.section_description %></td>
+                  <td><%= link_to 'Ver', section,class:"btn btn-default" %></td>
+                  <td><%= link_to 'Editar', edit_section_path(section),class:"btn btn-default" %></td>
+                  <td><%= link_to 'Eliminar', section, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
         <br><br>
-        <%= link_to 'Nuevo Sistema', new_section_path ,class:"btn btn-info"%>
+        <%= link_to 'Nuevo Categoria', new_section_path ,class:"btn btn-info"%>
         <br><br>
       </div>
 

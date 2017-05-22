@@ -34,7 +34,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> <%= current_user.email%> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Configuracion</a></li>
+                <%if current_user.permission_level=="manager" %>
+                <li><a href="<%='/home/configure'%>">Configuracion</a></li>
+                <%end%>
                 <li><a href="#">Preferencias</a></li>
                 <li role="separator" class="divider"></li>
                 <li>

@@ -30,7 +30,9 @@
 
 
       <div class="pull-right">
-        <%= link_to 'Editar', edit_article_path(@article),class:"btn btn-success" %> |
+        <%if can? :update,@article%>
+          <%= link_to 'Editar', edit_article_path(@article),class:"btn btn-success" %> |
+        <%end%>
         <%= link_to 'Regresar', articles_path,class:"btn btn-danger" %>
       </div>
 

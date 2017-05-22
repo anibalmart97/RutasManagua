@@ -15,23 +15,11 @@
           <%= @section.section_name %>
         </2>
       </div>
-      <div class="col-xs-12 ">
-        <img src="<%= asset_path 'image3.jpg' %>" alt="Imagen numero uno" class="pull-center img-thumbnail">
-      </div>
       <div class="col-xs-12">
-        <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, mollitia, fugit. Ipsum tempore ex ad officia veritatis, adipisci tempora dignissimos! Non doloremque pariatur natus, unde, animi eius voluptates. Nobis, excepturi.</span>
-        <span>Ullam laudantium cum assumenda quod expedita ipsa ipsum natus voluptas voluptatem incidunt deleniti odit aspernatur dolor necessitatibus tempora esse, id labore aliquid voluptatum! Et culpa, unde illum voluptate, quae dolorum.</span>
-        <span>Explicabo, inventore molestiae, incidunt at tempore neque! Sit nam voluptatem modi, possimus numquam beatae deleniti! Nisi repellendus pariatur quia sint necessitatibus obcaecati eum earum quo autem sequi, provident sed, illum.</span>
-        <span>Voluptates molestias illo voluptatibus. Qui nisi minima laudantium, iusto accusamus labore, explicabo voluptas ea ipsa voluptatum aliquam, aspernatur sequi. Tenetur ipsam ratione obcaecati quibusdam voluptate velit, ab pariatur iusto porro.</span>
-        <span>Beatae pariatur inventore cupiditate distinctio, fugiat debitis aut repellendus, hic autem mollitia explicabo id temporibus ducimus, provident quas veniam. Voluptas iusto vero nulla quia possimus ratione eaque! Ut, soluta, atque.</span></p>
+        <%= @section.section_description %>
       </div>
-      <br><br>
-      <div class="col-xs-12">
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe width="854" height="480" src="https://www.youtube.com/embed/Lo2qQmj0_h4" frameborder="0" allowfullscreen></iframe>
-        </div>
-      </div>
-      <br><br>
+      <br>
+      <br>
       <div class="col-xs-12" style="margin-top:15px;">
         <div class="right">
           <%= link_to 'Editar', edit_section_path(@section),class:"btn btn-warning" %>

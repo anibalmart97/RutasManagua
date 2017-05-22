@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   ###Lista los tres primeros articulos en caso de que existan
   def index
     @Articles=Article.all
@@ -17,4 +16,10 @@ class HomeController < ApplicationController
     @Articulo = Article.find(params[:id])
   end
 
+  def configure
+    @Articles=Article.all
+    @Recorridos=Recorrido.all
+    @Sections=Section.all
+    @Users=User.all
+  end
 end ##Fin de Controlador

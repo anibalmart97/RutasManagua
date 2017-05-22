@@ -2,8 +2,41 @@
   <p id="notice"><%= notice %></p>
 
   <h1>Lista de Articulos</h1>
-  <div class="me_content_table">
+  <%if can? :create, @article %>
+    <%= link_to 'Nuevo Articulo', new_article_path,class:" pull-right btn btn-primary" %>
+    <br>
+    <br>
+  <%end%>
 
+  <%if not can? :destroy,:create,:update,@articles%>
+  <div id="mArticles">
+    <% @articles.each do |articulo| %>
+        <article class="post clearfix">
+          <a href="#" class="thumb pull-left">
+            <!-- <img src="<%= asset_path 'image2.jpg' %>" alt="Imagen numero uno" class="img-thumbnail"> -->
+            <%= image_tag articulo.image.url(:small) ,class:"img-thumbnail" %>
+
+          </a>
+
+          <h2 class="post-title">
+            <a href="#"><%= articulo.article_title%></a>
+          </h2>
+          <p><span class="post-fecha"><%= articulo.article_date%></span> Por <span class="post-autor"><a href="#">RutasManagua</a></span></p>
+          <p class="post-contenido text-justify">
+            <%=  articulo.article_content[0...421]+'...'%>
+          </p>
+          <div class="contenedor-botones">
+            <%= link_to 'Leer mas', articulo,class:"btn btn-primary" %>
+            <a href="#" class="btn btn-danger">Comentarios <span class="badge">20</span></a>
+          </div>
+        </article>
+    <% end %>
+  </div>
+  <%end%>
+
+  <%if can? :destroy,:create,:update,@articles%>
+
+  <div class="me_content_table">
     <table class="table table-striped table-condensed table-hover">
       <thead>
         <tr class="active">
@@ -33,8 +66,7 @@
       </tbody>
     </table>
   </div>
-
+  <%end%>
   <br>
-  <%= link_to 'Nuevo Articulo', new_article_path,class:"btn btn-primary" %>
 </div>
 <br/>
