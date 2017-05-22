@@ -7,6 +7,9 @@
 #mibody{
 font-family: 'Titillium Web', sans-serif;
 margin-top: 50px;
+padding-top: 0px;
+margin-bottom: 0px;
+padding-bottom: 0px;
 background:url("<%= asset_path 'bg.jpg' %>"); /* Nuestra imagen de fondo */
 background-repeat:no-repeat; /* Indicamos que no se repetira */
 background-size:cover; /* Encajamos la imagen al 100% del ancho */
@@ -102,7 +105,7 @@ background: #fbfbfb;
 }
 
 footer{
-  margin-top: 15px;
+  margin-top: 0px;
 }
 
 footer, footer > .panel{
@@ -113,6 +116,21 @@ footer, footer > .panel{
 
 textarea {
 	resize: none;
+}
+
+.content-user-form {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin: 0px;
+  background-image: image-url("bg-user.jpg");
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.content-user {
+  margin-top: 65px;
+  margin-bottom: 65px;
 }
 // .form-control{
 //   border:none;

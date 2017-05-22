@@ -3,14 +3,7 @@ class RutasController < ApplicationController
   def recorrido
     @ruta=Ruta.all
     @recorrido=Recorrido.all
-    gon.test=5
-    @record=gon.test
-    # @Prueba_GEOJSON=''
-    # for line in (0...1)
-    #   if  @Recorridos[line] then
-    #     @Prueba_GEOJSON=@Recorridos[line]
-    #   end
-    # end
+    
   end
 
   def searchRecorrido

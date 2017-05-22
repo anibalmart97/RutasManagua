@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521092408) do
+ActiveRecord::Schema.define(version: 20170522020602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,11 +44,6 @@ ActiveRecord::Schema.define(version: 20170521092408) do
 
   add_index "ckeditor_assets", ["type"], name: "index_ckeditor_assets_on_type", using: :btree
 
-  create_table "myusers", primary_key: "user_id", force: :cascade do |t|
-    t.string "user_name",     limit: 15
-    t.string "user_password", limit: 20
-  end
-
   create_table "recorridos", force: :cascade do |t|
     t.string   "ruta_name"
     t.text     "ruta_description"
@@ -69,6 +64,26 @@ ActiveRecord::Schema.define(version: 20170521092408) do
     t.string "section_name"
     t.text   "section_description"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "name"
+    t.string   "permission_level"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "articles", "sections"
   add_foreign_key "rutas", "recorridos"

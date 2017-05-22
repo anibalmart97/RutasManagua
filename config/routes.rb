@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  resources :recorridos
+
+  devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
   get 'rutas/recorrido'
   get 'home/meinfo'
 
   resources :sections
-  resources :my_users
   resources :articles
+  resources :recorridos
+
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

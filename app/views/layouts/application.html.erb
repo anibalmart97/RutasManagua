@@ -12,111 +12,22 @@
   <link rel="shorcut icon" type="image-x-icon" href="<%= asset_path 'favicon.ico' %>">
 </head>
 <body id="mibody" class="container_m">
-  <header>
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
-						<span class="sr-only">Desplegar / Ocultar Menu</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="<%='/home/index'%>" class="navbar-brand">RutasManagua</a>
-				</div>
-				<!--Inicia Menu-->
-				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="<%='/home/index'%>"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
-						<li class=""><a href="/home/meinfo"><span class="glyphicon glyphicon-flag"></span> Quienes Somos</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-								<span class="glyphicon glyphicon-map-marker"></span> Servicios
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="<%='/rutas/recorrido'%>">Mapas de Recorridos</a></li>
-								<li><a href="#">Ubicacion</a></li>
-								<li class="divider"></li>
-								<li><a href="/articles">Noticas</a></li>
-							</ul>
-						</li>
-						<li class=""><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-envelope"></span> Contactenos</a></li>
-					</ul>
-					<!-- <form action="" class="navbar-form navbar-right" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Buscar" id="mTxtSearch">
-						</div>
-						<a type="submit" class="btn btn-primary" href="#" onclick="mfn_Search();">
-							<span class="glyphicon glyphicon-search"></span>
-						</a>
-					</form> -->
-				</div>
-				<!--Termina Menu-->
-			</div>
-		</nav>
-	</header>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Contactenos</h4>
-        </div>
-        <div class="modal-body">
-          <p class="text-justify">
-             Bienvenidos, en caso de contar con sugerencias que puedan aplicarse al sistema para la optimizacion del
-             mismo pueden enviarlas a traves del siguiente formulario, de ante mano le agradecemos por su colaboracion.
-             Saludos.
-          </p>
-             <form>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Nombre</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Mensaje o Sugerencias</label>
-                <textarea  class="form-control" placeholder="Mensaje" rows="4"></textarea>
-              </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Enviar</button>
-        </div>
-      </div>
+  <%= render "partials/header" %>
+  <% if notice %>
+    <div class="alert alert-success alert-dismissible" role="alert" style="margin:0px;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= notice %>
     </div>
-  </div>
-
-<%= yield %>
-
-  <footer>
-    <div class="panel container">
-      <div class="row">
-          <section class="col-md-6 ">
-            <div class="hidden-sm hidden-xs">
-              <h3>Acerca de RutasManagua</h3>
-              <p class="text-justify">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-            <div class="col-md-12">
-                <a href="http://grupoRutasManagua.com/" id="linkToRutasManagua">
-                  <h4 class="pull-right">-RutasManagua <small>Derechos Reservados </small></h4>
-                </a>
-            </div>
-          </section>
-          <section class="col-md-6 col-xs-12 hidden-sm hidden-xs">
-            <img src="<%= asset_path 'footer-icon.jpg' %>" alt="" class="thumbnail logoRutasManagua">
-          </section>
-      </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger alert-dismissible" role="alert" style="margin:0px;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= alert %>
     </div>
-  </footer>
+  <% end %>
+  <%= render "partials/modal" %>
+  <%= yield %>
+  <%= render "partials/footer" %>
+
 </body>
 </html>

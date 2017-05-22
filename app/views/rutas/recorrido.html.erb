@@ -71,78 +71,79 @@
           var selectedOption = $(this).find('option:selected');
           var selectedLabel = (selectedOption).text();
           var selectedValue = (selectedOption).val();
-          //var geojsonObjectString = <%= raw @recorrido.find(1).to_json %>;
-          $.ajax({
-              url: '/recorridos/' + selectedValue,
-              dataType: "JSON",
-              timeout: 10000,
-              success: function(res) {
-                geojsonObjectString=res
-                if (geojsonObjectString){
+          //var geojsonObjectString = <%= raw @recorrido.find(1).to_json
+          if (selectedValue){
+            $.ajax({
+                url: '/recorridos/' + selectedValue,
+                dataType: "JSON",
+                timeout: 10000,
+                success: function(res) {
+                  geojsonObjectString=res
+                  if (geojsonObjectString){
 
-                      document.getElementById("map").innerHTML="";
-                      document.getElementById('recorrido_name').innerHTML=geojsonObjectString.ruta_name;
-                      document.getElementById('recorrido_description').innerHTML=geojsonObjectString.ruta_description;
+                        document.getElementById("map").innerHTML="";
+                        document.getElementById('recorrido_name').innerHTML=geojsonObjectString.ruta_name;
+                        document.getElementById('recorrido_description').innerHTML=geojsonObjectString.ruta_description;
 
-                      var vectorSource = new ol.source.Vector({
-                        features: (new ol.format.GeoJSON()).readFeatures(geojsonObjectString.ruta_recorrido,{
-                          dataProjection: 'EPSG:4326',
-                          featureProjection: 'EPSG:3857'
+                        var vectorSource = new ol.source.Vector({
+                          features: (new ol.format.GeoJSON()).readFeatures(geojsonObjectString.ruta_recorrido,{
+                            dataProjection: 'EPSG:4326',
+                            featureProjection: 'EPSG:3857'
+                              })
+                        });
+
+                        var vectorLayer = new ol.layer.Vector({
+                          source: vectorSource,
+                        });
+
+                        var map = new ol.Map({
+                          layers: [
+                            new ol.layer.Tile({
+                              source: new ol.source.OSM()
+                            }),
+                            vectorLayer
+                          ],
+                          target: 'map',
+                          controls: ol.control.defaults({
+                            attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+                              collapsible: false
                             })
-                      });
-
-                      var vectorLayer = new ol.layer.Vector({
-                        source: vectorSource,
-                      });
-
-                      var map = new ol.Map({
-                        layers: [
-                          new ol.layer.Tile({
-                            source: new ol.source.OSM()
                           }),
-                          vectorLayer
-                        ],
-                        target: 'map',
-                        controls: ol.control.defaults({
-                          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-                            collapsible: false
+                          view: new ol.View({
+                            defaultDataProjection: 'EPSG:4326',
+                            center: ol.proj.transform([-86.25040, 12.13282], 'EPSG:4326', 'EPSG:3857'),
+                            zoom: 13
                           })
-                        }),
-                        view: new ol.View({
-                          defaultDataProjection: 'EPSG:4326',
-                          center: ol.proj.transform([-86.25040, 12.13282], 'EPSG:4326', 'EPSG:3857'),
-                          zoom: 13
+                        });
+
+                  } else{ //Cierre IF inicio Else
+
+                    var map = new ol.Map({
+                      layers: [
+                        new ol.layer.Tile({
+                          source: new ol.source.OSM()
                         })
-                      });
-
-                } else{ //Cierre IF inicio Else
-
-                  var map = new ol.Map({
-                    layers: [
-                      new ol.layer.Tile({
-                        source: new ol.source.OSM()
+                      ],
+                      target: 'map',
+                      controls: ol.control.defaults({
+                        attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+                          collapsible: false
+                        })
+                      }),
+                      view: new ol.View({
+                        defaultDataProjection: 'EPSG:4326',
+                        center: ol.proj.transform([-86.25040, 12.13282], 'EPSG:4326', 'EPSG:3857'),
+                        zoom: 13
                       })
-                    ],
-                    target: 'map',
-                    controls: ol.control.defaults({
-                      attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-                        collapsible: false
-                      })
-                    }),
-                    view: new ol.View({
-                      defaultDataProjection: 'EPSG:4326',
-                      center: ol.proj.transform([-86.25040, 12.13282], 'EPSG:4326', 'EPSG:3857'),
-                      zoom: 13
-                    })
-                  });
+                    });
 
-                } //Cierre Else
-              },
-              error: function() {
+                  } //Cierre Else
+                },
+                error: function() {
 
-              }
-            });
-
+                }
+              });
+          }
       }).change();
 
       </script>
