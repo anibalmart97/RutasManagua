@@ -11,7 +11,7 @@
 
             <div class="field">
               <%= f.label :Nombre %><br />
-              <%= f.email_field :name, autofocus: true,class:"form-control" %>
+              <%= f.text_field :name, autofocus: true,class:"form-control" %>
             </div>
 
             <div class="field">
@@ -32,7 +32,7 @@
               <%= f.password_field :password_confirmation, autocomplete: "off",class:"form-control" %>
             </div>
             <br>
-            
+
             <div class="actions pull-right">
               <%= f.submit "Registrarme",class:"btn btn-primary" %>
             </div>
