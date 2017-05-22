@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :recorridos
   mount Ckeditor::Engine => '/ckeditor'
   get 'rutas/recorrido'
-  get 'rutas/meinfo'
+  get 'home/meinfo'
 
   resources :sections
   resources :my_users

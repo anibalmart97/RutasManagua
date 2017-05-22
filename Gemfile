@@ -13,10 +13,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-datepicker-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'tzinfo-data'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+gem 'rails-assets-openlayers3', source: 'http://insecure.rails-assets.org'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
@@ -27,6 +29,7 @@ gem 'nokogiri', '1.6.8.rc3'
 gem 'bundler'
 gem 'json'
 gem 'rake'
+gem 'gon'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

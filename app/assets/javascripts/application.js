@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require ckeditor/init
+//= require openlayers3/build/ol
 //= require_tree .

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516051231) do
+ActiveRecord::Schema.define(version: 20170521092408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,10 +49,27 @@ ActiveRecord::Schema.define(version: 20170516051231) do
     t.string "user_password", limit: 20
   end
 
+  create_table "recorridos", force: :cascade do |t|
+    t.string   "ruta_name"
+    t.text     "ruta_description"
+    t.text     "ruta_recorrido"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "rutas", force: :cascade do |t|
+    t.integer  "recorrido_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rutas", ["recorrido_id"], name: "index_rutas_on_recorrido_id", using: :btree
+
   create_table "sections", force: :cascade do |t|
     t.string "section_name"
     t.text   "section_description"
   end
 
   add_foreign_key "articles", "sections"
+  add_foreign_key "rutas", "recorridos"
 end

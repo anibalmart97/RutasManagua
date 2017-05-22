@@ -1,73 +1,148 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-9 col-xs-12">
-      <div class="col-xs-12 container-map">
-          <ol class="breadcrumb">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li class="active">Mapas de Recorridos</li>
-          </ol>
-          <div class="page-header">
-            <h1>Mapa de Recorrido <small>Seleccione la Unidad de Transporte</small></h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 col-xs-12">
+            <div class="col-xs-12 container-map">
+                <ol class="breadcrumb">
+                  <li><a href="#">Inicio</a></li>
+                  <li><a href="#">Servicios</a></li>
+                  <li class="active">Mapas de Recorridos</li>
+                </ol>
+                <div class="page-header">
+                  <h1>Mapa de Recorrido <small>Seleccione la Unidad de Transporte</small></h1>
+                </div>
+                <div style="width:100%; height:100%" id="map"></div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+              <div class="alert alert-info">
+                <p>Seleccione la ruta para visualizar el recorrido.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+              <div class="form-group">
+               <label for="selection_ruta">Seleccione una Ruta:</label>
+               <select class="form-control" id="selection_ruta">
+                 <% @recorrido.each do |ruta| %>
+                   <option value="<%=ruta.id%>"><%= ruta.ruta_name%></option>
+                 <%end%>
+               </select>
+             </div>
+            </div>
+
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                   Informacion de la Ruta:
+                </div>
+                <div class="panel-body">
+                  <table class="table table-hover table-striped table-bordered table-condensed">
+                    <tr>
+                      <th>Nombre:</th>
+                      <th id="recorrido_name"></th>
+                    </tr>
+                    <tr>
+                      <th>Descripcion:</th>
+                      <th id="recorrido_description"></th>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div style="width:100%; height:100%" id="map"></div>
-      </div>
-      <div class="col-md-6 col-xs-12">
-        <div class="alert alert-warning">
-          <p>Seleccione la ruta para visualizar el recorrido.</p>
+          <div class="col-md-3 hidden-xs">
+            <aside class="hidden-xs hidden-sm">
+                <h4>Servicios</h4>
+                <div class="list-group">
+                  <a href="#" class="list-group-item active">Mapas de Recorridos</a>
+                  <a href="#" class="list-group-item">Ubicacion</a>
+                  <a href="#" class="list-group-item">Noticas</a>
+                  <a href="#" class="list-group-item">Contactar / Sugerencias</a>
+                  <a href="#" class="list-group-item">Acerca de Nosotros</a>
+                </div>
+            </aside>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-xs-12">
-        <div class="form-group">
-         <label for="selection_ruta">Seleccione una Ruta:</label>
-         <select class="form-control" id="selection_ruta">
-           <option>1</option>
-           <option>2</option>
-           <option>3</option>
-           <option>4</option>
-         </select>
-       </div>
-      </div>
-
-    </div>
-    <div class="col-md-3 hidden-xs">
-      <aside class="hidden-xs hidden-sm">
-          <h4>Servicios</h4>
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Mapas de Recorridos</a>
-            <a href="#" class="list-group-item">Ubicacion</a>
-            <a href="#" class="list-group-item">Noticas</a>
-            <a href="#" class="list-group-item">Contactar / Sugerencias</a>
-            <a href="#" class="list-group-item">Acerca de Nosotros</a>
-          </div>
-      </aside>
-    </div>
-  </div>
-</div>
-
-<script>
-    var map = new ol.Map({
-      target: 'map',
-      renderer: 'canvas',
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM()
-        })
-      ],
-      view: new ol.View({
-        center: ol.proj.transform([2.1833, 41.3833], 'EPSG:4326', 'EPSG:3857'),
-        zoom: 2
-      })
-    });
-
-    var vectorLayer = new ol.layer.Vector({
-    source: new ol.source.GeoJSON({
-      url: "<%= asset_path('geojson/6.1.geojson') %>"
-    })
-  });
-
-  // Añadir capa vectorial al mapa
-  map.addLayer(vectorLayer);
 
 
-</script>
+    <script>
+
+      $('#selection_ruta').change(function(){
+          var selectedOption = $(this).find('option:selected');
+          var selectedLabel = (selectedOption).text();
+          var selectedValue = (selectedOption).val();
+          //var geojsonObjectString = <%= raw @recorrido.find(1).to_json %>;
+          $.ajax({
+              url: '/recorridos/' + selectedValue,
+              dataType: "JSON",
+              timeout: 10000,
+              success: function(res) {
+                geojsonObjectString=res
+                if (geojsonObjectString){
+
+                      document.getElementById("map").innerHTML="";
+                      document.getElementById('recorrido_name').innerHTML=geojsonObjectString.ruta_name;
+                      document.getElementById('recorrido_description').innerHTML=geojsonObjectString.ruta_description;
+
+                      var vectorSource = new ol.source.Vector({
+                        features: (new ol.format.GeoJSON()).readFeatures(geojsonObjectString.ruta_recorrido,{
+                          dataProjection: 'EPSG:4326',
+                          featureProjection: 'EPSG:3857'
+                            })
+                      });
+
+                      var vectorLayer = new ol.layer.Vector({
+                        source: vectorSource,
+                      });
+
+                      var map = new ol.Map({
+                        layers: [
+                          new ol.layer.Tile({
+                            source: new ol.source.OSM()
+                          }),
+                          vectorLayer
+                        ],
+                        target: 'map',
+                        controls: ol.control.defaults({
+                          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+                            collapsible: false
+                          })
+                        }),
+                        view: new ol.View({
+                          defaultDataProjection: 'EPSG:4326',
+                          center: ol.proj.transform([-86.25040, 12.13282], 'EPSG:4326', 'EPSG:3857'),
+                          zoom: 13
+                        })
+                      });
+
+                } else{ //Cierre IF inicio Else
+
+                  var map = new ol.Map({
+                    layers: [
+                      new ol.layer.Tile({
+                        source: new ol.source.OSM()
+                      })
+                    ],
+                    target: 'map',
+                    controls: ol.control.defaults({
+                      attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+                        collapsible: false
+                      })
+                    }),
+                    view: new ol.View({
+                      defaultDataProjection: 'EPSG:4326',
+                      center: ol.proj.transform([-86.25040, 12.13282], 'EPSG:4326', 'EPSG:3857'),
+                      zoom: 13
+                    })
+                  });
+
+                } //Cierre Else
+              },
+              error: function() {
+
+              }
+            });
+
+      }).change();
+
+      </script>
