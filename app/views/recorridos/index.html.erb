@@ -1,0 +1,35 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Lista de Recorridos</h1>
+
+  <div class="me_content_table">
+    <table class="table table-striped  table-condensed table-hover">
+      <thead>
+        <tr class="active">
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Recorrido (GEOJson)</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @recorridos.each do |recorrido| %>
+          <tr>
+            <td><%= recorrido.ruta_name %></td>
+            <td><%= recorrido.ruta_description %></td>
+            <td><%= recorrido.ruta_recorrido[0..181] %></td>
+            <td><%= link_to 'Ver', recorrido,class:"btn btn-default" %></td>
+            <td><%= link_to 'Editar', edit_recorrido_path(recorrido),class:"btn btn-default" %></td>
+            <td><%= link_to 'Eliminar', recorrido, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <%= link_to 'Nuevo Recorrido', new_recorrido_path,class:"btn btn-primary" %>
+</div>

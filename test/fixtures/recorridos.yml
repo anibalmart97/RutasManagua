@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ruta_name: MyString
+  ruta_description: MyText
+  ruta_recorrido: MyText
+
+two:
+  ruta_name: MyString
+  ruta_description: MyText
+  ruta_recorrido: MyText
