@@ -1,5 +1,4 @@
 class RutasController < ApplicationController
-  load_and_authorize_resource
 
   def recorrido
     @ruta=Ruta.all

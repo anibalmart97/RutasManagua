@@ -1,5 +1,4 @@
 class RecorridosController < ApplicationController
-  load_and_authorize_resource
   before_action :set_recorrido, only: [:show, :edit, :update, :destroy]
 
   # GET /recorridos
